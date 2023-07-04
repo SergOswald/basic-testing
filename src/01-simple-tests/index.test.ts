@@ -3,27 +3,27 @@
 
 describe('simpleCalculator tests', () => {
   test('should add two numbers', () => {
-    // Write your test here
+    expect(simpleCalculator(1, 2, '+')).toBe(3);
   });
 
   test('should subtract two numbers', () => {
-    // Write your test here
+    expect(simpleCalculator(1, 2, '-')).toBe(-1);
   });
 
   test('should multiply two numbers', () => {
-    // Write your test here
+    expect(simpleCalculator(3, 2, '*')).toBe(6);
   });
 
   test('should divide two numbers', () => {
-    // Write your test here
+    expect(simpleCalculator(3, 2, '/')).toBe(1.5);
   });
 
   test('should exponentiate two numbers', () => {
-    // Write your test here
+    expect(simpleCalculator(3, 2, '^')).toBe(9);
   });
 
   test('should return null for invalid action', () => {
-    // Write your test here
+    expect(simpleCalculator(3, 0, '/')).toBe(null);
   });
 
   test('should return null for invalid arguments', () => {
