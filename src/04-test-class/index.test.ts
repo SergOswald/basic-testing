@@ -1,5 +1,6 @@
 // Uncomment the code below and write your tests
-import { getBankAccount, InsufficientFundsError, TransferFailedError, SynchronizationFailedError } from './index';
+import { getBankAccount, InsufficientFundsError, TransferFailedError, SynchronizationFailedError, } from './index';
+import lodash from 'lodash';
 
 describe('BankAccount', () => {
   test('should create account with initial balance', () => {
@@ -49,8 +50,9 @@ describe('BankAccount', () => {
 
   test('should set new balance if fetchBalance returned number', async () => {
     // Write your tests here
+    jest.spyOn(lodash, 'random').mockImplementation(() => 10);
     const gBAtd=await getBankAccount(100).fetchBalance();
-    expect(gBAtd).toBe(gBAtd);
+    expect(gBAtd).toBe(10);
   });
 
   test('should throw SynchronizationFailedError if fetchBalance returned null', async () => {
