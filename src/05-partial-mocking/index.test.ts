@@ -9,8 +9,9 @@ jest.mock('./index', () => {
   return {
     __esModule: true,
     ...originalModule,
-    default: jest.fn(() => ''),
-    unmockedFunction: jest.fn(() => 'I am not mocked'),
+    mockOne: jest.fn(),
+    mockTwo: jest.fn(),
+    mockThree: jest.fn(),
     };
 
 });
@@ -22,16 +23,18 @@ describe('partial mocking', () => {
 
   test('mockOne, mockTwo, mockThree should not log into console', () => {
     // Write your test here
-  
-  expect(mockOne()).toBe('');
-  expect(mockTwo()).toBe('');
-  expect(mockThree()).toBe('');
+    mockOne();
+    mockTwo();
+    mockThree();
+    expect(jest.spyOn(console, 'log')).not.toHaveBeenCalled();
   
   });
 
   test('unmockedFunction should log into console', () => {
     // Write your test here
 
-    expect(unmockedFunction).toBe('I am not mocked');
+    console.log = jest.fn();
+    unmockedFunction();
+    expect(console.log).toHaveBeenCalledWith('I am not mocked');
   });
 });
