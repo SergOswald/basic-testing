@@ -1,7 +1,16 @@
-// Uncomment the code below and write your tests
 import {simpleCalculator, Action} from './index';
 
-const testCases = [
+// используем библиотеку jest
+// Action — объект (или enum) с типами действий
+
+interface TestCase {
+  a: number;
+  b: number;
+  action: Action;
+  expected: number;
+}
+
+const testCases: TestCase[] = [
     { a: 1, b: 2, action: Action.Add, expected: 3 },
     { a: 2, b: 2, action: Action.Add, expected: 4 },
     { a: 3, b: 2, action: Action.Add, expected: 5 },
@@ -17,20 +26,20 @@ const testCases = [
     { a: 1, b: 2, action: Action.Exponentiate, expected: 1 },
     { a: 2, b: 2, action: Action.Exponentiate, expected: 4 },
     { a: 3, b: 2, action: Action.Exponentiate, expected: 9 }
-    
-    // continue cases for other actions    
+  
 ]; 
 
+// data-driven testing — когда тесты управляются таблицей данных
+
+/*
 describe('simpleCalculator', () => {
-  // This test case is just to run this test suite, remove it when you write your own tests
-  //test('should blah-blah', () => {expect(true).toBe(true);});
-
- // delete testCases[0].expected;
-
-
+  
   test('should add two numbers', () => {
     expect(simpleCalculator(testCases[0] as { a: number; b: number; action: string })).toBe(3);
   });
+
+  //внутри — проверка через Jest-матчер
+  //фактический и ожидаемый результат
 
   test('should add two numbers', () => {
     expect(simpleCalculator(testCases[1] as { a: number; b: number; action: string })).toBe(4);
@@ -88,8 +97,15 @@ describe('simpleCalculator', () => {
     expect(simpleCalculator(testCases[14] as { a: number; b: number; action: string })).toBe(9);
   });
 
-
-
-
-  // Consider to use Jest table tests API to test all cases above
 });
+
+  */
+
+  describe('simpleCalculator', () => {
+    testCases.forEach(({ a, b, action, expected }) => {
+      test(`should ${action} ${a} and ${b}`, () => {
+        expect(simpleCalculator({ a , b, action })).toBe(expected);
+      });
+    });
+  });
+

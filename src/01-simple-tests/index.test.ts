@@ -5,6 +5,10 @@ describe('simpleCalculator tests', () => {
     expect(simpleCalculator({a: 1, b: 2, action: Action.Add})).toBe(3);
   });
 
+  //определяет один тест,
+  //функция Jest, создаёт утверждение (assertion), которое проверяет результат
+  //сравнивает строго (===) возвращаемое значение с ожидаемым.
+
   test('should subtract two numbers', () => {
     expect(simpleCalculator({a:1, b:2, action: Action.Subtract})).toBe(-1);
   });
